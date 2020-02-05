@@ -265,6 +265,60 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-如何理解操作对象实际上是操作对象的引用？"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/02/06/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E9%99%85%E4%B8%8A%E6%98%AF%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%9F/">如何理解操作对象实际上是操作对象的引用？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/02/06/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E9%99%85%E4%B8%8A%E6%98%AF%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%9F/" class="article-date">
+	  <time datetime="2020-02-05T16:12:45.972Z" itemprop="datePublished">2020-02-06</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          JS中的变量是保存在栈内存中的
+而对象是保存在堆内存中的，每个对象在堆内存中都占有自己的空间
+js中我们不能直接操作堆内存，由变量保存对象的内存地址，即对象的引用，然后通过变量才能找到对象，好比如找一个地方，地方那么多，世界那么大，而我们不能直接就到达那个地方，需要通过地址去找到一样
+例：
+12var person &#x3D; new Object() person.name &#x3D; &quot;John&quot;    &#x2F;&#x2F;操作对象时只能用变量，而不能直接用...
+        </p>
+        <p class="article-more-link">
+          <a href="/2020/02/06/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E5%AE%9E%E9%99%85%E4%B8%8A%E6%98%AF%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%9F/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-browser"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     

@@ -265,6 +265,68 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-reload"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/02/08/reload/">如何理解重载？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/02/08/reload/" class="article-date">
+	  <time datetime="2020-02-08T08:04:12.586Z" itemprop="datePublished">2020-02-08</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          js中函数没有重载
+什么叫重载？
+重载即一个函数能编写两个定义（即相同的函数名），只要这两个定义的签名（接受的参数的类型和数量）不同即可
+JS中如果出现两个相同名字的函数，后面定义的函数直接覆盖前面定义的函数
+例：
+function addSomeNumber(num){
+return num + 100;
+}
+function addSomeNumber(num){
+return num + 200;
+}
+var result = addSomeNumber(100);  //300
+
+        </p>
+        <p class="article-more-link">
+          <a href="/2020/02/08/reload/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-object"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     

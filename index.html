@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>黄观娣个人博客</title>
+  <title>小曦专谈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="黄观娣个人博客">
+  <meta name="description" content="code can change the world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小曦专谈">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="黄观娣个人博客">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Gladys Huang">
+<meta property="og:site_name" content="小曦专谈">
+<meta property="og:description" content="code can change the world">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Mrs.Gladys">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="黄观娣个人博客" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="小曦专谈" type="application/atom+xml">
   
 
   
@@ -212,9 +214,9 @@
 
         
           <div class="homelogoback"  style="border: 1px solid #404040;" >
-            <h1><a href="#content" id="logo">黄观娣个人博客</a></h1>
-            <h3></h3>
-            <h5>Gladys Huang</h5>
+            <h1><a href="#content" id="logo">小曦专谈</a></h1>
+            <h3>code can change the world</h3>
+            <h5>Mrs.Gladys</h5>
             <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
           </div>
         
@@ -242,15 +244,15 @@
   <div class="intro-navigate">
       <p class="navigater-list">
         
-          <a id="beautifont" class="main-nav-link" href="/">Home</a>
+          <a id="beautifont" class="main-nav-link" href="/">首页</a>
         
-          <a id="beautifont" class="main-nav-link" href="/archives">Archives</a>
+          <a id="beautifont" class="main-nav-link" href="/archives">归档</a>
         
-          <a id="beautifont" class="main-nav-link" href="/categories">Categories</a>
+          <a id="beautifont" class="main-nav-link" href="/categories">分类</a>
         
-          <a id="beautifont" class="main-nav-link" href="/tags">Tags</a>
+          <a id="beautifont" class="main-nav-link" href="/tags">标签</a>
         
-          <a id="beautifont" class="main-nav-link" href="/about">About</a>
+          <a id="beautifont" class="main-nav-link" href="/about">关于</a>
         
       </p>
   </div>
@@ -298,17 +300,10 @@
 重载即一个函数能编写两个定义（即相同的函数名），只要这两个定义的签名（接受的参数的类型和数量）不同即可
 JS中如果出现两个相同名字的函数，后面定义的函数直接覆盖前面定义的函数
 例：
-function addSomeNumber(num){
-return num + 100;
-}
-function addSomeNumber(num){
-return num + 200;
-}
-var result = addSomeNumber(100);  //300
-
+12345678910111213function addSomeNumber(num)&#123;return num + 100;&#125;function addSomeNumber(num)&#123;return num + 200;&#125;var result...
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/08/reload/#more">Read More</a>
+          <a href="/2020/02/08/reload/#more">阅读全文</a>
         </p>
       
     </div>
@@ -359,10 +354,15 @@ var result = addSomeNumber(100);  //300
 而对象是保存在堆内存中的，每个对象在堆内存中都占有自己的空间
 js中我们不能直接操作堆内存，由变量保存对象的内存地址，即对象的引用，然后通过变量才能找到对象，好比如找一个地方，地方那么多，世界那么大，而我们不能直接就到达那个地方，需要通过地址去找到一样
 例：
-12var person &#x3D; new Object() person.name &#x3D; &quot;John&quot;    &#x2F;&#x2F;操作对象时只能用变量，而不能直接用...
+12var person = new Object() person.name = "John"    //操作对象时只能用变量，而不能直接用对象
+
+
+
+
+
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/06/object/#more">Read More</a>
+          <a href="/2020/02/06/object/#more">阅读全文</a>
         </p>
       
     </div>
@@ -402,6 +402,8 @@ js中我们不能直接操作堆内存，由变量保存对象的内存地址，
 	</a>
 
       
+    <a class="article-category-link" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+
       
       
 
@@ -429,7 +431,7 @@ IE、猎豹安全、360极速浏览器、百度浏览器
 firefox...
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/05/browser/#more">Read More</a>
+          <a href="/2020/02/05/browser/#more">阅读全文</a>
         </p>
       
     </div>
@@ -480,7 +482,7 @@ firefox...
 Quick StartCreate a new post1$ hexo new "My New Post...
         </p>
         <p class="article-more-link">
-          <a href="/2020/01/20/hello-world/#more">Read More</a>
+          <a href="/2020/01/20/hello-world/#more">阅读全文</a>
         </p>
       
     </div>
@@ -513,12 +515,12 @@ Quick StartCreate a new post1$ hexo new "My New Post...
   <div class="container">
       	<div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2013 - 2020 黄观娣个人博客 All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2020 小曦专谈 All Rights Reserved.</p>
 	      
 	      
     		<p class="busuanzi_uv">
-				UV : <span id="busuanzi_value_site_uv"></span> |  
-				PV : <span id="busuanzi_value_site_pv"></span>
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
 		    </p>
   		   
 		</div>
@@ -672,10 +674,10 @@ Quick StartCreate a new post1$ hexo new "My New Post...
         </div>
          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
           <div class="panel-body">
-            黄观娣个人博客
+            小曦专谈
           </div>
           <div class="panel-body">
-            Copyright © 2020 Gladys Huang All Rights Reserved.
+            Copyright © 2020 Mrs.Gladys All Rights Reserved.
           </div>
         </div>
       </div>

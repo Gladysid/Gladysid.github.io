@@ -216,37 +216,42 @@
       <footer id="footer">
   
 
-  <div class="container">
-      	<div class="row">
-	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2013 - 2020 小曦专谈 All Rights Reserved.</p>
-	      
-	      
-    		<p class="busuanzi_uv">
-				访客数 : <span id="busuanzi_value_site_uv"></span> |  
-				访问量 : <span id="busuanzi_value_site_pv"></span>
-		    </p>
-  		   
-		</div>
+        <div class="container">
+          <div class="row">
+            <!-- <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p> -->
+            <p id="copyRightEn">Copyright &copy;
+              2019 -
+                2020
+                  小曦专谈 All Rights Reserved.</p>
 
-		
-  </div>
+            
+              <p class="busuanzi_uv">
+                访客数 :
+                  <span id="busuanzi_value_site_uv"></span> |
+                  访问量 :
+                    <span id="busuanzi_value_site_pv"></span>
+              </p>
+              
+          </div>
+
+
+        </div>
 </footer>
 
 
 <!-- min height -->
 
 <script>
-    var wrapdiv = document.getElementById("wrap");
-    var contentdiv = document.getElementById("content");
-    var allheader = document.getElementById("allheader");
+  var wrapdiv = document.getElementById("wrap");
+  var contentdiv = document.getElementById("content");
+  var allheader = document.getElementById("allheader");
 
-    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
-    if (allheader != null) {
-      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    } else {
-      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
-    }
+  wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+  if (allheader != null) {
+    contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+  } else {
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+  }
 </script>
     </div>
     <!-- <nav id="mobile-nav">

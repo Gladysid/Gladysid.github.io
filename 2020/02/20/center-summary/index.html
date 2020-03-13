@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>css水平居中+垂直居中+水平/垂直居中总结 | 小曦专谈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CSS" />
+  
+  
+  
+  
+  <meta name="description" content="目录 水平居中 123456789行内元素块级元素    方案一：(分宽度定不定两种情况)    方案二：使用定位属性    方案三：使用flexbox布局实现（宽度定不定都可以） 垂直居中 12345678910单行的行内元素多行的行内元素块级元素    方案一：使用定位    方案二：使用flexbox布局实现（高度定不定都可以）  水平垂直居中 12345678已知高度和宽度的元素未知高度和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS水平居中+垂直居中+水平&#x2F;垂直居中总结">
+<meta property="og:url" content="http://yoursite.com/2020/02/20/center-summary/index.html">
+<meta property="og:site_name" content="小曦专谈">
+<meta property="og:description" content="目录 水平居中 123456789行内元素块级元素    方案一：(分宽度定不定两种情况)    方案二：使用定位属性    方案三：使用flexbox布局实现（宽度定不定都可以） 垂直居中 12345678910单行的行内元素多行的行内元素块级元素    方案一：使用定位    方案二：使用flexbox布局实现（高度定不定都可以）  水平垂直居中 12345678已知高度和宽度的元素未知高度和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-inline.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block1-3-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block1-3-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block1-3-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-inline1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-inline2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-block1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-block2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-1-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-1-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-3-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-3-4.png">
+<meta property="article:published_time" content="2020-02-20T15:17:30.364Z">
+<meta property="article:modified_time" content="2020-02-20T16:37:12.339Z">
+<meta property="article:author" content="Mrs.Gladys">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-inline.png">
+  
+    <link rel="alternate" href="/atom.xml" title="小曦专谈" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-center-summary" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CSS水平居中+垂直居中+水平/垂直居中总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/02/20/center-summary/" class="article-date">
+	  <time datetime="2020-02-20T15:17:30.364Z" itemprop="datePublished">2020-02-20</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>目录</strong></p>
+<p>水平居中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">行内元素</span><br><span class="line"></span><br><span class="line">块级元素</span><br><span class="line"></span><br><span class="line">    方案一：(分宽度定不定两种情况)</span><br><span class="line"></span><br><span class="line">    方案二：使用定位属性</span><br><span class="line"></span><br><span class="line">    方案三：使用flexbox布局实现（宽度定不定都可以）</span><br></pre></td></tr></table></figure>
+<p>垂直居中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">单行的行内元素</span><br><span class="line"></span><br><span class="line">多行的行内元素</span><br><span class="line"></span><br><span class="line">块级元素</span><br><span class="line"></span><br><span class="line">    方案一：使用定位</span><br><span class="line"></span><br><span class="line">    方案二：使用flexbox布局实现（高度定不定都可以）</span><br></pre></td></tr></table></figure>
+
+<p>水平垂直居中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">已知高度和宽度的元素</span><br><span class="line"></span><br><span class="line">未知高度和宽度的元素</span><br><span class="line"></span><br><span class="line">    方案一：使用定位属性</span><br><span class="line"></span><br><span class="line">    方案二：使用flex布局实现</span><br></pre></td></tr></table></figure>
+
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><ul>
+<li><strong>行内元素</strong></li>
+</ul>
+<p>首先看它的父元素是不是块级元素，如果是，则直接给父元素设置 text-align: center;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是行内元素<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不是，则先将其父元素设置为块级元素，再给父元素设置 text-align: center;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">display</span>: block;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;span id&#x3D;&quot;father&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span id&#x3D;&quot;son&quot;&gt;我是行内元素&lt;&#x2F;span&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-inline.png" alt="Image"></p>
+<ul>
+<li><strong>块级元素</strong></li>
+</ul>
+<p><strong>方案一：(分宽度定不定两种情况)</strong></p>
+<p><strong>定宽度</strong>：需要谁居中，给其设置 margin: 0 auto; （作用：使盒子自己居中）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div id&#x3D;&quot;father&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id&#x3D;&quot;son&quot;&gt;我是块级元素&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block1-3-4.png" alt="Image"></p>
+<p><strong>不定宽度</strong>：默认子元素的宽度和父元素一样，这时需要设置子元素为display: inline-block; 或 display: inline;即将其转换成行内块级/行内元素，给父元素设置 text-align: center;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">display</span>: inline;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>效果：（将#son转换成行内元素，内容的高度撑起了#son的高度，设置高度无用）</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block2.png" alt="Image"></p>
+<p><strong>方案二：使用定位属性</strong></p>
+<p>首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的left:50%，即让子元素的左上角水平居中；</p>
+<p><strong>定宽度：</strong>设置绝对子元素的 margin-left: -元素宽度的一半px; 或者设置transform: translateX(-50%);</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;father&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id&#x3D;&quot;son&quot;&gt;我是块级元素&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>不定宽度：</strong>利用css3新增属性transform: translateX(-50%);</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">50%</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block1-3-4.png" alt="Image"></p>
+<p><strong>方案三：使用flexbox布局实现（宽度定不定都可以）</strong></p>
+<p>使用flexbox布局，只需要给待处理的块状元素的父元素添加属性 display: flex; justify-content: center;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">display</span>: flex;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">justify-content</span>: center;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-block1-3-4.png" alt="Image"></p>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><ul>
+<li><strong>单行的行内元素</strong></li>
+</ul>
+<p>只需要设置单行行内元素的”行高等于盒子的高”即可；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">300px</span>;  </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是单行的行内元素<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-inline1.png" alt="Image"></p>
+<ul>
+<li><strong>多行的行内元素</strong></li>
+</ul>
+<p>使用给父元素设置display:table-cell;和vertical-align: middle;属即可；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">display</span>: table-cell;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">vertical-align</span>:middle;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;father&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;span id&#x3D;&quot;son&quot;&gt;我是多行的行内元素我是多行的行内元素我是多行的行内元素我是多行的行内元素我是多行的行内元素我是多行的行内元素我是多行的行内元素我是多行的行内元素&lt;&#x2F;span&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-inline2.png" alt="Image"></p>
+<ul>
+<li><strong>块级元素</strong></li>
+</ul>
+<p><strong>方案一：使用定位</strong></p>
+<p>首先设置父元素为相对定位，再设置子元素为绝对定位，设置子元素的top: 50%，即让子元素的左上角垂直居中；</p>
+<p><strong>定高度</strong>：设置绝对子元素的 margin-top: -元素高度的一半px; 或者设置transform: translateY(-50%);</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>不定高度</strong>：利用css3新增属性transform: translateY(-50%);</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-block1.png" alt="Image"></p>
+<p><strong>方案二：使用flexbox布局实现（高度定不定都可以）</strong></p>
+<p>使用flexbox布局，只需要给待处理的块状元素的父元素添加属性 display: flex; align-items: center;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">display</span>: flex;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">align-items</span>: center;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-vertical-block2.png" alt="Image"></p>
+<h2 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h2><ul>
+<li><strong>已知高度和宽度的元素</strong></li>
+</ul>
+<p><strong>方案一</strong>：设置父元素为相对定位，给子元素设置绝对定位，top: 0; right: 0; bottom: 0; left: 0; margin: auto;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">margin</span>: auto;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;father&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id&#x3D;&quot;son&quot;&gt;我是块级元素&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-1-2.png" alt="Image"></p>
+<p><strong>方案二</strong>：设置父元素为相对定位，给子元素设置绝对定位，left: 50%; top: 50%; margin-left: –元素宽度的一半px; margin-top: –元素高度的一半px;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-1-2.png" alt="Image"></p>
+<ul>
+<li><strong>未知高度和宽度的元素</strong></li>
+</ul>
+<p><strong>方案一：使用定位属性</strong></p>
+<p>设置父元素为相对定位，给子元素设置绝对定位，left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%);</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">position</span>: absolute;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">50%</span>) <span class="built_in">translateY</span>(-<span class="number">50%</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-3-4.png" alt="Image"></p>
+<p><strong>方案二：使用flex布局实现</strong></p>
+<p>设置父元素为flex定位，justify-content: center; align-items: center;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#father</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: skyblue;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">display</span>: flex;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">justify-content</span>: center;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">align-items</span>: center;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">    <span class="selector-id">#son</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">background-color</span>: green;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"son"</span>&gt;</span>我是块级元素<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/center-level-vertical-3-4.png" alt="Image"></p>
+<p>PS：已修改原创中部分错误代码</p>
+<ol>
+<li>垂直居中-单行的行内元素-#son 的样式（height:300px改为line-height:300px）</li>
+<li>垂直居中-块级元素-方案一-不定高度-#son 的样式(left:50%改为top:50%)</li>
+</ol>
+<p>版权声明：本文为CSDN博主「杜媛媛」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。</p>
+<p>原文链接：<a href="https://blog.csdn.net/weixin_37580235/article/details/82317240" target="_blank" rel="noopener">https://blog.csdn.net/weixin_37580235/article/details/82317240</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/fancybox/WechatQR.jpg',
+  alipayImage: '/fancybox/AlipayQR.jpg'
+});
+</script>
+      
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC80ODU5Ni8yNTA5MA">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/20/BFC%20principle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          BFC原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/18/use%20css3%20to%20make%20a%20simple%20progress%20bar/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">使用css3制作一个简易的环形进度条</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平居中"><span class="nav-number">1.</span> <span class="nav-text">水平居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直居中"><span class="nav-number">2.</span> <span class="nav-text">垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平垂直居中"><span class="nav-number">3.</span> <span class="nav-text">水平垂直居中</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+        <div class="container">
+          <div class="row">
+            <!-- <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p> -->
+            <p id="copyRightEn">Copyright &copy;
+              2019 -
+                2020
+                  小曦专谈 All Rights Reserved.</p>
+
+            
+              <p class="busuanzi_uv">
+                访客数 :
+                  <span id="busuanzi_value_site_uv"></span> |
+                  访问量 :
+                    <span id="busuanzi_value_site_pv"></span>
+              </p>
+              
+          </div>
+
+
+        </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+  var wrapdiv = document.getElementById("wrap");
+  var contentdiv = document.getElementById("content");
+  var allheader = document.getElementById("allheader");
+
+  wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+  if (allheader != null) {
+    contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+  } else {
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+  }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            小曦专谈
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 Mrs.Gladys All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

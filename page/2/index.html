@@ -12,7 +12,7 @@
   <meta name="description" content="code can change the world">
 <meta property="og:type" content="website">
 <meta property="og:title" content="小曦专谈">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="小曦专谈">
 <meta property="og:description" content="code can change the world">
 <meta property="og:locale" content="zh_CN">
@@ -309,7 +309,7 @@
         
           <section id="main" style="float:none;">
   
-    <article id="post-built files won&#39;t work"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-distinguish of W3C box and IE box"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -317,7 +317,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/14/built%20files%20won't%20work/">built files are meant to be served over an HTTP server.   Opening index.html over file:// won&#39;t work</a>
+      <a class="article-title" href="/2020/02/12/distinguish%20of%20W3C%20box%20and%20IE%20box/">W3C标准盒模型与IE盒模型区别</a>
     </h1>
   
 
@@ -325,12 +325,12 @@
     
     <div class="article-meta">
       
-	<a href="/2020/03/14/built%20files%20won't%20work/" class="article-date">
-	  <time datetime="2020-03-13T20:19:52.464Z" itemprop="datePublished">2020-03-14</time>
+	<a href="/2020/02/12/distinguish%20of%20W3C%20box%20and%20IE%20box/" class="article-date">
+	  <time datetime="2020-02-12T11:29:35.923Z" itemprop="datePublished">2020-02-12</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/">项目问题集合</a>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
 
       
       
@@ -339,14 +339,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          npm run build之后，出现提示：Tip: built files are meant to be served over an HTTP server. Opening index.html over file:// won‘t work.
-打开dist文件夹里的index.html文件，页面无法显示，控制台报错如下：
+          
 
-解决1：将绝对路径改为相对路径修改目标文件：项目目录 &gt; config文件夹 &gt; index.js
-1assetsPublicPath:&#39;&...
+
+不难看出，两个盒子模型都有content，padding,border,margin,唯一的区别就是对元素尺寸的计算方式，标准盒子模型的盒子宽度=content+padding+border,而IE盒子模型的盒子宽度=content
+为了避免盒子被撑开，CCS3中增加了一种能够更改盒子的属性：box-sizing,它有两个属性值，
+（1）content-box:对应W3C盒模型
+（2）border-box:对应IE盒模型
+
         </p>
         <p class="article-more-link">
-          <a href="/2020/03/14/built%20files%20won't%20work/#more">阅读全文</a>
+          <a href="/2020/02/12/distinguish%20of%20W3C%20box%20and%20IE%20box/#more">阅读全文</a>
         </p>
       
     </div>
@@ -365,7 +368,7 @@
 
 
   
-    <article id="post-Do you know why javaScript is weak language"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-reload"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -373,7 +376,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/27/Do%20you%20know%20why%20javaScript%20is%20weak%20language/">你知道为什么JavaScript是弱类型语言吗?</a>
+      <a class="article-title" href="/2020/02/08/reload/">如何理解重载？</a>
     </h1>
   
 
@@ -381,8 +384,8 @@
     
     <div class="article-meta">
       
-	<a href="/2020/02/27/Do%20you%20know%20why%20javaScript%20is%20weak%20language/" class="article-date">
-	  <time datetime="2020-02-27T06:20:17.678Z" itemprop="datePublished">2020-02-27</time>
+	<a href="/2020/02/08/reload/" class="article-date">
+	  <time datetime="2020-02-08T08:04:12.586Z" itemprop="datePublished">2020-02-08</time>
 	</a>
 
       
@@ -395,16 +398,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          在学习JavaScript的时候，说JavaScript是弱类型语言。那为什么JavaScript是弱类型语言呢。
-但是在此之前我们需要了解一下弱类型语言，和强类型语言的区别。
-强类型定义语言和弱类型定义语言
-1）强类型定义语言：
-强制数据类型定义的语言。也就是说，一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。举个例子：如果你定义了一个整型变量a,那么程序根本不可能将a当作字符串类型处理。强类型定义语言是类型安全的语言。
-2）弱类型定义语言：
-数据类型...
+          js中函数没有重载
+什么叫重载？
+重载即一个函数能编写两个定义（即相同的函数名），只要这两个定义的签名（接受的参数的类型和数量）不同即可
+JS中如果出现两个相同名字的函数，后面定义的函数直接覆盖前面定义的函数
+例：
+12345678910111213function addSomeNumber(num)&#123;return num + 100;&#125;function addSomeNumber(num)&#123;return num + 200;&#125;var result...
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/27/Do%20you%20know%20why%20javaScript%20is%20weak%20language/#more">阅读全文</a>
+          <a href="/2020/02/08/reload/#more">阅读全文</a>
         </p>
       
     </div>
@@ -423,7 +425,7 @@
 
 
   
-    <article id="post-install mysql in linux system"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-object"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -431,7 +433,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/27/install%20mysql%20in%20linux%20system/">在Linux系统下安装MySQL</a>
+      <a class="article-title" href="/2020/02/06/object/">如何理解操作对象实际上是操作对象的引用？</a>
     </h1>
   
 
@@ -439,12 +441,12 @@
     
     <div class="article-meta">
       
-	<a href="/2020/02/27/install%20mysql%20in%20linux%20system/" class="article-date">
-	  <time datetime="2020-02-27T06:07:22.241Z" itemprop="datePublished">2020-02-27</time>
+	<a href="/2020/02/06/object/" class="article-date">
+	  <time datetime="2020-02-05T16:12:45.972Z" itemprop="datePublished">2020-02-06</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
 
       
       
@@ -453,18 +455,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          安装前提：系统为CentOS 7.3
-利用yum安装第一步：下载MySQL安装包
-1wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+          JS中的变量是保存在栈内存中的
+而对象是保存在堆内存中的，每个对象在堆内存中都占有自己的空间
+js中我们不能直接操作堆内存，由变量保存对象的内存地址，即对象的引用，然后通过变量才能找到对象，好比如找一个地方，地方那么多，世界那么大，而我们不能直接就到达那个地方，需要通过地址去找到一样
+例：
+12var person = new Object() person.name = "John"    //操作对象时只能用变量，而不能直接用对象
 
-第二步：将MySQL包添加到yum repository
-1yum localinstall mysql57-community-release-el7-7.noarch.rpm
 
-第三步：查看MySQL包是否成功添加到yum repository上
-1yum ...
+
+
+
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/27/install%20mysql%20in%20linux%20system/#more">阅读全文</a>
+          <a href="/2020/02/06/object/#more">阅读全文</a>
         </p>
       
     </div>
@@ -483,7 +486,7 @@
 
 
   
-    <article id="post-page change small question"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-browser"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -491,7 +494,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/23/page%20change%20small%20question/">Vue项目打包后整体页面缩小的坑</a>
+      <a class="article-title" href="/2020/02/05/browser/">常用浏览器以及内核</a>
     </h1>
   
 
@@ -499,12 +502,12 @@
     
     <div class="article-meta">
       
-	<a href="/2020/02/23/page%20change%20small%20question/" class="article-date">
-	  <time datetime="2020-02-23T10:10:26.573Z" itemprop="datePublished">2020-02-23</time>
+	<a href="/2020/02/05/browser/" class="article-date">
+	  <time datetime="2020-02-05T08:47:24.142Z" itemprop="datePublished">2020-02-05</time>
 	</a>
 
       
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/">项目问题集合</a>
+    <a class="article-category-link" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
 
       
       
@@ -513,11 +516,27 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          这两天发现一个特别奇怪的问题，做好的Vue项目打包后页面整体都缩小了，然后去度娘上搜索解决方案，但是上面都是页面放大或者防止页面缩小放大的解决方案，好不容易搜到有类似的标题，但是没有解决方案，百思不得其解，各种方法都试过了，都无济于事，不知道你们是否有遇到过这样的问题？
-后来，我想着将打包后的页面放大看看，结果一打开就发现问题所在了，打包后的页面是按100%来显示的，而打开的本地项目页面是按125%来显示的，原因是Window系统默认布局大小是按照125%来显示的，如下图所示，所以没有手动...
+          常用浏览器浏览器是网页显示以及运行的平台
+常用的浏览器有chrome、IE、Safari、Opera、Firefox，称为五大国外浏览器，微软为了取代陈旧的IE浏览器，随着window10推出了Edge浏览器。
+浏览器内核浏览器内核也称为渲染引擎，负责读取网页内容，内核也叫渲染引擎，负责读取网页内容，整理讯息，计算网页的显示方式并显示页面。简单来说就是读取并显示网页内容。
+
+
+
+浏览器
+内核
+备注
+
+
+
+IE
+Trident
+IE、猎豹安全、360极速浏览器、百度浏览器
+
+
+firefox...
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/23/page%20change%20small%20question/#more">阅读全文</a>
+          <a href="/2020/02/05/browser/#more">阅读全文</a>
         </p>
       
     </div>
@@ -536,7 +555,7 @@
 
 
   
-    <article id="post-css how to show background and text in pic"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-How to use the vedieo of H5"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -544,7 +563,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/21/css%20how%20to%20show%20background%20and%20text%20in%20pic/">css如何实现鼠标移至图片上显示遮罩层及文字</a>
+      <a class="article-title" href="/2019/10/02/How%20to%20use%20the%20vedieo%20of%20H5/">H5 video标签的使用</a>
     </h1>
   
 
@@ -552,300 +571,8 @@
     
     <div class="article-meta">
       
-	<a href="/2020/02/21/css%20how%20to%20show%20background%20and%20text%20in%20pic/" class="article-date">
-	  <time datetime="2020-02-20T16:26:29.112Z" itemprop="datePublished">2020-02-21</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          搜索这个效果的时候，很多人都是用css结合jQuery实现的，其实直接用css也可以实现哦~
-效果前：
-
-效果后：
-
-代码：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091&lt;!DOCTYP...
-        </p>
-        <p class="article-more-link">
-          <a href="/2020/02/21/css%20how%20to%20show%20background%20and%20text%20in%20pic/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BFC principle"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/20/BFC%20principle/">BFC原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/02/20/BFC%20principle/" class="article-date">
-	  <time datetime="2020-02-20T15:17:30.369Z" itemprop="datePublished">2020-02-20</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          一、常见定位方案在讲 BFC 之前，我们先来了解一下常见的定位方案，定位方案是控制元素的布局，有三种常见方案:
-
-普通流 (normal flow)
-
-在普通流中，元素按照其在 HTML 中的先后位置至上而下布局，在这个过程中，行内元素水平排列，直到当行被占满然后换行，块级元素则会被渲染为完整的一个新行，除非另外指定，否则所有元素默认都是普通流定位，也可以说，普通流中元素的位置由该元素在 HTML 文档中的位置决定。
-
-浮动 (float)
-
-在浮动布局中，元素首先按照普通流的位置出现，然...
-        </p>
-        <p class="article-more-link">
-          <a href="/2020/02/20/BFC%20principle/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-center-summary"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/20/center-summary/">CSS水平居中+垂直居中+水平/垂直居中总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/02/20/center-summary/" class="article-date">
-	  <time datetime="2020-02-20T15:17:30.364Z" itemprop="datePublished">2020-02-20</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          目录
-水平居中
-123456789行内元素块级元素    方案一：(分宽度定不定两种情况)    方案二：使用定位属性    方案三：使用flexbox布局实现（宽度定不定都可以）
-垂直居中
-12345678910单行的行内元素多行的行内元素块级元素    方案一：使用定位    方案二：使用flexbox布局实现（高度定不定都可以）
-
-水平垂直居中
-12345678已知高度和宽度的元素未知高度和宽度的元素    方案一：使用定位属性    方案二：使用flex布局实现
-
-水平居中
-行内元...
-        </p>
-        <p class="article-more-link">
-          <a href="/2020/02/20/center-summary/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-use css3 to make a simple progress bar"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/18/use%20css3%20to%20make%20a%20simple%20progress%20bar/">使用css3制作一个简易的环形进度条</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/02/18/use%20css3%20to%20make%20a%20simple%20progress%20bar/" class="article-date">
-	  <time datetime="2020-02-18T09:46:55.157Z" itemprop="datePublished">2020-02-18</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          css：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384section &#123;          width: 2rem;          height: 2rem;          position: rela...
-        </p>
-        <p class="article-more-link">
-          <a href="/2020/02/18/use%20css3%20to%20make%20a%20simple%20progress%20bar/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-How to show the pic in md file"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/17/How%20to%20show%20the%20pic%20in%20md%20file/">如何利用github在.md文件中添加图片</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/02/17/How%20to%20show%20the%20pic%20in%20md%20file/" class="article-date">
-	  <time datetime="2020-02-17T08:36:55.246Z" itemprop="datePublished">2020-02-17</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/">项目问题集合</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          1、在github上的仓库建立一个存放图片的库，库的名字随意。如：Images-blog
-2、将需要在.md文件中显示的图片，push到Images-blog库中
-3、然后打开github官网，进入仓库的Images-blog文件夹中，打开图片
-
-
-点击红框所示的按钮，copy地址
-4、在.md文件中填入：
-1![Image](https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Gladysid&#x2F;Images-blog&#x2F;ma...
-        </p>
-        <p class="article-more-link">
-          <a href="/2020/02/17/How%20to%20show%20the%20pic%20in%20md%20file/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-distinguish of px em rem"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/02/12/distinguish%20of%20px%20em%20rem/">px、em、rem的区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2020/02/12/distinguish%20of%20px%20em%20rem/" class="article-date">
-	  <time datetime="2020-02-12T11:30:28.753Z" itemprop="datePublished">2020-02-12</time>
+	<a href="/2019/10/02/How%20to%20use%20the%20vedieo%20of%20H5/" class="article-date">
+	  <time datetime="2019-10-01T16:00:00.000Z" itemprop="datePublished">2019-10-02</time>
 	</a>
 
       
@@ -858,21 +585,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          pxpx是英文pixel的缩写，意思是像素，为相对长度单位。像素px是相对于显示器屏幕分辨率而言的。
-特点
+          1, 下面是一个播放视频的最简单样例
+（controls属性告诉浏览器要有基本播放控件）
 
-IE无法调整那些使用px作为单位的字体大小；
-
-国外的大部分网站能够调整的原因在于其使用了em或rem作为字体单位；
-
-Firefox能够调整px和em，rem，但是96%以上的中国网民使用IE浏览器(或内核)。
+1&lt;video src="hangge.mp4" controls&gt;&lt;/video&gt;
 
 
-emem是相对长度单位，相对于父级元素的字体大小，所以em的值不是固定的。如当前对行内文本的字体尺寸未被设置，则相对于浏览器的默认字体尺寸。
-任意浏览器的默认字体为1...
+2，通过width和height设置视频窗口大小
+1&lt;video src="hangge.mp4" controls width="400" height="300"&gt;&lt;/video&gt;
+
+
+3，预加载媒体文件
+设置preload不同的属性值，可以告诉浏览器应该怎样...
         </p>
         <p class="article-more-link">
-          <a href="/2020/02/12/distinguish%20of%20px%20em%20rem/#more">阅读全文</a>
+          <a href="/2019/10/02/How%20to%20use%20the%20vedieo%20of%20H5/#more">阅读全文</a>
         </p>
       
     </div>
@@ -895,7 +622,7 @@ emem是相对长度单位，相对于父级元素的字体大小，所以em的�
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 </section>

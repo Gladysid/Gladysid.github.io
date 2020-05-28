@@ -18,19 +18,19 @@
 <meta property="og:site_name" content="小曦专谈">
 <meta property="og:description" content="安装前提：系统为CentOS 7.3 利用yum安装第一步：下载MySQL安装包 1wget http:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql57-community-release-el7-7.noarch.rpm  第二步：将MySQL包添加到yum repository 1yum localinstall mysql57-community-release-el7-7.noarc">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-4-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-4-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-6.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-1.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-2.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-3.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-4-1.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-4-2.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-5.png">
+<meta property="og:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-6.png">
 <meta property="article:published_time" content="2020-02-27T06:07:22.241Z">
-<meta property="article:modified_time" content="2020-02-27T06:55:23.314Z">
+<meta property="article:modified_time" content="2020-05-27T14:20:10.362Z">
 <meta property="article:author" content="Mrs.Gladys">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-1.png">
+<meta name="twitter:image" content="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-1.png">
   
     <link rel="alternate" href="/atom.xml" title="小曦专谈" type="application/atom+xml">
   
@@ -220,23 +220,23 @@
         <p>安装前提：系统为CentOS 7.3</p>
 <h2 id="利用yum安装"><a href="#利用yum安装" class="headerlink" title="利用yum安装"></a>利用yum安装</h2><p><strong>第一步：下载MySQL安装包</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-1.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-1.png" alt="Image"></p>
 <p><strong>第二步：将MySQL包添加到yum repository</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall mysql57-community-release-el7<span class="number">-7.n</span>oarch.rpm</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-2.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-2.png" alt="Image"></p>
 <p><strong>第三步：查看MySQL包是否成功添加到yum repository上</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist enabled | grep <span class="string">"mysql.*-community.*"</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-3.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-3.png" alt="Image"></p>
 <p><strong>第四步：安装MySQL</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mysql-community-server</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-4-1.png" alt="Image"></p>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-4-2.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-4-1.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-4-2.png" alt="Image"></p>
 <p><strong>第五步：启动MySQL服务</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-5.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-5.png" alt="Image"></p>
 <p><strong>第六步：查看MySQL版本</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql --version</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Gladysid/Images-blog/master/linux-install-mysql-6.png" alt="Image"></p>
+<p><img src="https://gladys-1301269145.cos.ap-guangzhou.myqcloud.com/online-Images/linux-install-mysql-6.png" alt="Image"></p>
 <p><strong>第七步：查看MySql的初始密码</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /<span class="keyword">var</span>/log/mysqld.log | grep password</span><br></pre></td></tr></table></figure>
 

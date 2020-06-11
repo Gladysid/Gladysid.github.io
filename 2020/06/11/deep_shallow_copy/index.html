@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>详说javascript中的深浅拷贝 | 小曦专谈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="javaScript" />
+  
+  
+  
+  
+  <meta name="description" content="前端工作用到，面试必考的一个知识点，你完全搞明白了吗？ 一、为什么会有深浅拷贝？在说深浅拷贝之前，需要先了解下js的数据类型： 数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol)和引用数据类型（Array，Object）  基本数据类型的特点：直接存储在栈(stack)中的数据 引用数据类型的特点：存储的是该对象在栈中引用，真实的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详说javaScript中的深浅拷贝">
+<meta property="og:url" content="http://yoursite.com/2020/06/11/deep_shallow_copy/index.html">
+<meta property="og:site_name" content="小曦专谈">
+<meta property="og:description" content="前端工作用到，面试必考的一个知识点，你完全搞明白了吗？ 一、为什么会有深浅拷贝？在说深浅拷贝之前，需要先了解下js的数据类型： 数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol)和引用数据类型（Array，Object）  基本数据类型的特点：直接存储在栈(stack)中的数据 引用数据类型的特点：存储的是该对象在栈中引用，真实的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_1.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_2.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_3.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_4.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_5_6.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_5_6.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_7.png">
+<meta property="og:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_8.png">
+<meta property="article:published_time" content="2020-06-11T12:21:15.676Z">
+<meta property="article:modified_time" content="2020-06-11T14:08:55.134Z">
+<meta property="article:author" content="Ms.Gladys">
+<meta property="article:tag" content="javaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="小曦专谈" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-deep_shallow_copy" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      详说javaScript中的深浅拷贝
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/06/11/deep_shallow_copy/" class="article-date">
+	  <time datetime="2020-06-11T12:21:15.676Z" itemprop="datePublished">2020-06-11</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前端工作用到，面试必考的一个知识点，你完全搞明白了吗？</p>
+<h2 id="一、为什么会有深浅拷贝？"><a href="#一、为什么会有深浅拷贝？" class="headerlink" title="一、为什么会有深浅拷贝？"></a>一、为什么会有深浅拷贝？</h2><p>在说深浅拷贝之前，需要先了解下js的数据类型：</p>
+<p>数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol)和引用数据类型（Array，Object）</p>
+<ul>
+<li>基本数据类型的特点：直接存储在栈(stack)中的数据</li>
+<li>引用数据类型的特点：<strong>存储的是该对象在栈中引用，真实的数据存放在堆内存里</strong></li>
+</ul>
+<p>引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。</p>
+<h2 id="二、浅拷贝与深拷贝区别"><a href="#二、浅拷贝与深拷贝区别" class="headerlink" title="二、浅拷贝与深拷贝区别"></a>二、浅拷贝与深拷贝区别</h2><p><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_1.png" alt="图片"></p>
+<p><strong>浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象共享同一块内存。</strong></p>
+<p><strong>深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</strong></p>
+<h2 id="三、赋值和浅拷贝的区别"><a href="#三、赋值和浅拷贝的区别" class="headerlink" title="三、赋值和浅拷贝的区别"></a>三、赋值和浅拷贝的区别</h2><p><strong>赋值：</strong>当我们把一个对象赋值给一个新的变量时，<strong>赋的其实是该对象的在栈中的地址，而不是堆中的数据</strong>。</p>
+<p>也就是新旧两个对象指向的是同一个存储空间，无论哪个对象发生改变，其实都是改变的存储空间的内容，因此，两个对象是联动的。</p>
+<p><strong>浅拷贝：</strong></p>
+<p>浅拷贝是按位拷贝对象，<strong>它会创建一个新对象</strong>，这个对象有着原始对象属性值的一份精确拷贝。</p>
+<p>如果属性是基本类型，拷贝的就是基本类型的值；这种情况，修改其中一个基本类型的值，不会影响另一个基本类型的值</p>
+<p>如果属性是内存地址（引用类型），拷贝的就是内存地址 ，因此如果其中一个对象改变了这个地址，就会影响到另一个对象。即只复制对象空间而不复制资源。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 对象赋值</span><br><span class="line"> </span><br><span class="line">var obj1 &#x3D; &#123;</span><br><span class="line">    &#39;name&#39;: &#39;zhangsan&#39;,</span><br><span class="line">    &#39;age&#39;:  &#39;18&#39;,</span><br><span class="line">    &#39;language&#39;: [1,[2,3],[4,5]],</span><br><span class="line">&#125;;</span><br><span class="line">var obj2 &#x3D; obj1;</span><br><span class="line">obj2.name &#x3D; &quot;lisi&quot;;</span><br><span class="line">obj2.language[1] &#x3D; [&quot;二&quot;,&quot;三&quot;];</span><br><span class="line">console.log(&#39;obj1&#39;, obj1)</span><br><span class="line">console.log(&#39;obj2&#39;, obj2)</span><br></pre></td></tr></table></figure>
+<p><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_2.png" alt="图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 浅拷贝</span><br><span class="line"> </span><br><span class="line">var obj1 &#x3D; &#123;</span><br><span class="line">    &#39;name&#39; : &#39;zhangsan&#39;,</span><br><span class="line">    &#39;age&#39; :  &#39;18&#39;,</span><br><span class="line">    &#39;language&#39; : [1,[2,3],[4,5]],</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">var obj3 &#x3D; shallowCopy(obj1);</span><br><span class="line">obj3.name &#x3D; &quot;lisi&quot;;</span><br><span class="line">obj3.language[1] &#x3D; [&quot;二&quot;,&quot;三&quot;];</span><br><span class="line"> </span><br><span class="line">function shallowCopy(src) &#123;</span><br><span class="line">    var dst &#x3D; &#123;&#125;;</span><br><span class="line">    for (var prop in src) &#123;</span><br><span class="line">        if (src.hasOwnProperty(prop)) &#123;</span><br><span class="line">            dst[prop] &#x3D; src[prop];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">return dst;</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#39;obj1&#39;, obj1)</span><br><span class="line">console.log(&#39;obj3&#39;, obj3)</span><br></pre></td></tr></table></figure>
+<p><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_3.png" alt="图片"></p>
+<p>三者对原始数据的影响，总结如下：</p>
+<p><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_4.png" alt="图片"></p>
+<h2 id="四、浅拷贝的实现方式"><a href="#四、浅拷贝的实现方式" class="headerlink" title="四、浅拷贝的实现方式"></a>四、浅拷贝的实现方式</h2><h3 id="1、Object-assign"><a href="#1、Object-assign" class="headerlink" title="1、Object.assign()"></a>1、Object.assign()</h3><p>Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。但是 Object.assign() 进行的是浅拷贝，拷贝的是对象的属性的引用，而不是对象本身。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123; a: &#123;a: &quot;gladys&quot;, b: 24&#125; &#125;;</span><br><span class="line">var initalObj &#x3D; </span><br><span class="line">Object.assign(&#123;&#125;, obj);</span><br><span class="line">initalObj.a.a &#x3D; &quot;vardar&quot;;</span><br><span class="line">console.log(obj.a.a); </span><br><span class="line">&#x2F;&#x2F;vardar</span><br></pre></td></tr></table></figure>
+<p>ps：<strong>当object只有一层的时候，是深拷贝</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj &#x3D; &#123;</span><br><span class="line">    username: &#39;kobe&#39;</span><br><span class="line">&#125;;</span><br><span class="line">let obj2 &#x3D; Object.assign(&#123;&#125;,obj);</span><br><span class="line">obj2.username &#x3D; &#39;wade&#39;;</span><br><span class="line">console.log(obj); &#x2F;&#x2F;&#123;username: &quot;kobe&quot;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2、Array-prototype-concat"><a href="#2、Array-prototype-concat" class="headerlink" title="2、Array.prototype.concat()"></a>2、Array.prototype.concat()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1, 3, &#123;    username: &#39;kobe&#39;    &#125;];</span><br><span class="line">let arr2&#x3D;arr.concat();    </span><br><span class="line">arr2[2].username &#x3D; &#39;wade&#39;;</span><br><span class="line">console.log(arr);</span><br></pre></td></tr></table></figure>
+<p>修改新对象会改到原对象：<br><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_5_6.png" alt="图片"></p>
+<h3 id="3、Array-prototype-slice"><a href="#3、Array-prototype-slice" class="headerlink" title="3、Array.prototype.slice()"></a>3、Array.prototype.slice()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1, 3, &#123;    username: &#39; kobe&#39;    &#125;];</span><br><span class="line">let arr3 &#x3D; arr.slice();</span><br><span class="line">arr3[2].username &#x3D; &#39;wade&#39;</span><br><span class="line">console.log(arr);</span><br></pre></td></tr></table></figure>
+<p>同样修改新对象会改到原对象：<br><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_5_6.png" alt="图片"></p>
+<p><strong>关于Array的slice和concat方法的补充说明</strong>：Array的slice和concat方法不修改原数组，只会返回一个浅复制了原数组中的元素的一个新数组。</p>
+<h2 id="五、深拷贝的实现方式"><a href="#五、深拷贝的实现方式" class="headerlink" title="五、深拷贝的实现方式"></a>五、深拷贝的实现方式</h2><h3 id="1、JSON-parse-JSON-stringify"><a href="#1、JSON-parse-JSON-stringify" class="headerlink" title="1、JSON.parse(JSON.stringify())"></a>1、JSON.parse(JSON.stringify())</h3><p>原理： 用JSON.stringify将对象转成JSON字符串，再用JSON.parse()把字符串解析成对象，一去一来，新的对象产生了，而且对象会开辟新的栈，实现深拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1, 3, &#123;    username: &#39; kobe&#39;&#125;];</span><br><span class="line">let arr4 &#x3D; JSON.parse(JSON.stringify(arr));</span><br><span class="line">arr4[2].username &#x3D; &#39;duncan&#39;; </span><br><span class="line">console.log(arr, arr4)</span><br></pre></td></tr></table></figure>
+<p><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_7.png" alt="图片"></p>
+<p>ps:<strong>这种方法虽然可以实现数组或对象深拷贝，但不能处理函数。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1, 3, &#123; username: &#39; kobe&#39; &#125;,function()&#123;&#125;];</span><br><span class="line">let arr4 &#x3D; JSON.parse(JSON.stringify(arr));</span><br><span class="line">arr4[2].username &#x3D; &#39;duncan&#39;; </span><br><span class="line">console.log(arr, arr4)</span><br></pre></td></tr></table></figure>
+<p><img src="https://vardar.oss-cn-shenzhen.aliyuncs.com/gladys/online_images/blog_img/deep_shallow_copy_8.png" alt="图片"></p>
+<p>这是因为 JSON.stringify() 方法是将一个JavaScript值(对象或者数组)转换为一个 JSON字符串，不能接受函数。</p>
+<h3 id="2、手写递归方法"><a href="#2、手写递归方法" class="headerlink" title="2、手写递归方法"></a>2、手写递归方法</h3><p>递归方法实现深度克隆原理：<strong>遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;定义检测数据类型的功能函数</span><br><span class="line">    </span><br><span class="line">function checkedType(target) &#123;</span><br><span class="line">    return Object.prototype.toString.call(target).slice(8, -1)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">&#x2F;&#x2F;实现深度克隆---对象&#x2F;数组</span><br><span class="line">    </span><br><span class="line">function clone(target) &#123;</span><br><span class="line">      </span><br><span class="line">    &#x2F;&#x2F;判断拷贝的数据类型</span><br><span class="line">      </span><br><span class="line">    &#x2F;&#x2F;初始化变量result 成为最终克隆的数据</span><br><span class="line">      </span><br><span class="line">    let result, targetType &#x3D; checkedType(target)</span><br><span class="line">      </span><br><span class="line">    if (targetType &#x3D;&#x3D;&#x3D; &#39;object&#39;) &#123;</span><br><span class="line">        result &#x3D; &#123;&#125;</span><br><span class="line">     &#125; else if (targetType &#x3D;&#x3D;&#x3D; &#39;Array&#39;) &#123;</span><br><span class="line">        result &#x3D; []</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return target</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#x2F;&#x2F;遍历目标数据</span><br><span class="line">    for (let i in target) &#123;</span><br><span class="line">        &#x2F;&#x2F;获取遍历数据结构的每一项值。</span><br><span class="line">        let value &#x3D; target[i]</span><br><span class="line">        &#x2F;&#x2F;判断目标结构里的每一值是否存在对象&#x2F;数组</span><br><span class="line">        if (checkedType(value) &#x3D;&#x3D;&#x3D; &#39;Object&#39; ||</span><br><span class="line">          checkedType(value) &#x3D;&#x3D;&#x3D; &#39;Array&#39;) &#123; &#x2F;&#x2F;对象&#x2F;数组里嵌套了对象&#x2F;数组</span><br><span class="line">          &#x2F;&#x2F;继续遍历获取到value值</span><br><span class="line">          result[i] &#x3D; clone(value)</span><br><span class="line">        &#125; else &#123; &#x2F;&#x2F;获取到value值是基本的数据类型或者是函数。</span><br><span class="line">          result[i] &#x3D; value;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、函数库lodash"><a href="#3、函数库lodash" class="headerlink" title="3、函数库lodash"></a>3、函数库lodash</h3><p>Lodash作为JavaScript函数库/工具库，它里面有非常好用的封装好的功能</p>
+<p>该函数库提供 _.cloneDeep 用来做深拷贝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var _ &#x3D; require(&#39;lodash&#39;);</span><br><span class="line">var obj1 &#x3D; &#123;    a: 1, b: &#123; f: &#123; g: 1 &#125; &#125;,    c: [1, 2, 3]&#125;;</span><br><span class="line">var obj2 &#x3D; _.cloneDeep(obj1);</span><br><span class="line">console.log(obj1.b.f &#x3D;&#x3D;&#x3D; obj2.b.f);</span><br><span class="line">&#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '/fancybox/WechatQR.jpg',
+  alipayImage: '/fancybox/AlipayQR.jpg'
+});
+</script>
+      
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC80ODU5Ni8yNTA5MA">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript/" rel="tag">javaScript</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/11/Unexpected%20end%20of%20JSON%20input%20while%20parsing%20near/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Unexpected end of JSON input while parsing near
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/28/npm%20ERR!%20code%20ELIFECYCLE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">npm ERR! code ELIFECYCLE</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、为什么会有深浅拷贝？"><span class="nav-number">1.</span> <span class="nav-text">一、为什么会有深浅拷贝？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、浅拷贝与深拷贝区别"><span class="nav-number">2.</span> <span class="nav-text">二、浅拷贝与深拷贝区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、赋值和浅拷贝的区别"><span class="nav-number">3.</span> <span class="nav-text">三、赋值和浅拷贝的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、浅拷贝的实现方式"><span class="nav-number">4.</span> <span class="nav-text">四、浅拷贝的实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Object-assign"><span class="nav-number">4.1.</span> <span class="nav-text">1、Object.assign()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Array-prototype-concat"><span class="nav-number">4.2.</span> <span class="nav-text">2、Array.prototype.concat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Array-prototype-slice"><span class="nav-number">4.3.</span> <span class="nav-text">3、Array.prototype.slice()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、深拷贝的实现方式"><span class="nav-number">5.</span> <span class="nav-text">五、深拷贝的实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、JSON-parse-JSON-stringify"><span class="nav-number">5.1.</span> <span class="nav-text">1、JSON.parse(JSON.stringify())</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、手写递归方法"><span class="nav-number">5.2.</span> <span class="nav-text">2、手写递归方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、函数库lodash"><span class="nav-number">5.3.</span> <span class="nav-text">3、函数库lodash</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+        <div class="container">
+          <div class="row">
+            <!-- <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p> -->
+            <p id="copyRightEn">Copyright &copy;
+              2019 -
+                2020
+                  小曦专谈 All Rights Reserved.</p>
+
+            
+              <p class="busuanzi_uv">
+                访客数 :
+                  <span id="busuanzi_value_site_uv"></span> |
+                  访问量 :
+                    <span id="busuanzi_value_site_pv"></span>
+              </p>
+              
+          </div>
+
+
+        </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+  var wrapdiv = document.getElementById("wrap");
+  var contentdiv = document.getElementById("content");
+  var allheader = document.getElementById("allheader");
+
+  wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+  if (allheader != null) {
+    contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+  } else {
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+  }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            小曦专谈
+          </div>
+          <div class="panel-body">
+            Copyright © 2020 Ms.Gladys All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
